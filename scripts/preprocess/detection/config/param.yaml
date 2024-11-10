@@ -1,0 +1,8 @@
+input_dir: "/Users/at/dataset/DSEC/"
+output_dir: "/Users/at/dataset/dsec-det/"
+num_processors: 2
+
+tau_ms: 50       # イベントを取得する間隔（ミリ秒）
+delta_t_ms: 50   # 各取得におけるイベントの長さ（ミリ秒）
+
+frame_shape: [480, 640]
