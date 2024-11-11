@@ -52,7 +52,8 @@ def save_sequence_as_video_dataloader(dataloader, t_ms: int, output_file: str):
                         except Exception as e:
                             print(f"Error drawing rectangle at sample {sample_idx}, time step {t}, box {box}: {e}")
                 else:
-                    print(f"No valid bounding boxes for sample {sample_idx}, time step {t}")
+                    pass
+                    # print(f"No valid bounding boxes for sample {sample_idx}, time step {t}")
 
                 # ビデオフレームとして書き込む
                 video_writer.write(img_uint)
