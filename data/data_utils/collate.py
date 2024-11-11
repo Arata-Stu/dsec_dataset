@@ -2,7 +2,7 @@ import torch
 
 def custom_collate_fn(batch):
     # 各サンプルの`event_frames`、`labels`、`file_paths`、`is_start_sequence`、`mask`を個別に取得
-    event_frames = [torch.stack([frame.clone().detach() for frame in sample['event_frames']]) for sample in batch]
+    event_frames = [torch.stack([frame.clone().detach() for frame in sample['events']]) for sample in batch]
     labels = [sample['labels'] for sample in batch]
     file_paths = [sample['file_paths'] for sample in batch]
     is_start_sequence = [sample['is_start_sequence'] for sample in batch]
@@ -16,7 +16,7 @@ def custom_collate_fn(batch):
     masks = torch.stack(masks)
 
     return {
-        'event_frames': event_frames,
+        'events': event_frames,
         'labels': labels,
         'file_paths': file_paths,
         'is_start_sequence': is_start_sequence,

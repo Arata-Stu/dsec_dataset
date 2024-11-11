@@ -49,7 +49,7 @@ class EventPadderTransform:
         :param sample: Dictionary containing 'event_frames' and 'labels'.
         :return: Dictionary with each 'event_frame' padded to a square size.
         """
-        event_frames = sample['event_frames']
+        event_frames = sample['events']
         labels_sequence = sample['labels']
 
         # Ensure the event frames are tensors, so convert to numpy for padding
@@ -357,7 +357,7 @@ class RandomSpatialAugmentor:
         )
 
     def __call__(self, sample):
-        event_frames = sample['event']  # シーケンス (sequence_length, channels, height, width)
+        event_frames = sample['events']  # シーケンス (sequence_length, channels, height, width)
         labels_sequence = sample['labels']     # シーケンス内のラベルリスト
 
         augmented_event_frames = []
@@ -413,7 +413,7 @@ class RandomSpatialAugmentor:
         augmented_event_frames = torch.stack(augmented_event_frames)
 
         # Update sample with augmented frames and labels
-        sample['event'] = augmented_event_frames
+        sample['events'] = augmented_event_frames
         sample['labels'] = augmented_labels_sequence
 
         return sample

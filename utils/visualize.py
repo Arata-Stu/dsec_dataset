@@ -7,7 +7,7 @@ def save_sequence_as_video_dataloader(dataloader, t_ms: int, output_file: str):
     sample_batch = next(iter(dataloader))
     
     # サンプルバッチのサイズを取得し、動画の解像度を決定
-    _, h, w = sample_batch['event_frames'][0][0].shape
+    _, h, w = sample_batch['events'][0][0].shape
     size = (w, h)
     
     # 動画の設定
@@ -18,7 +18,7 @@ def save_sequence_as_video_dataloader(dataloader, t_ms: int, output_file: str):
     track_colors = {}
 
     for batch in dataloader:
-        event_frames_batch = batch['event_frames']
+        event_frames_batch = batch['events']
         labels_batch = batch['labels']
         
         for sample_idx in range(event_frames_batch.shape[0]):

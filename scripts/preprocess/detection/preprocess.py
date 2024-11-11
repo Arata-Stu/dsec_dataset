@@ -7,6 +7,7 @@ import yaml
 from multiprocessing import Pool, cpu_count, get_context
 import argparse
 
+# イベントフレームの生成関数
 def create_event_frame(slice_events, frame_shape):
     height, width = frame_shape
     frame = np.ones((height, width, 3), dtype=np.uint8) * 114  # 背景をグレーで初期化
@@ -21,6 +22,7 @@ def create_event_frame(slice_events, frame_shape):
 
     return frame
 
+# 各シーケンスの処理
 def process_sequence(args):
     data_dir, output_dir, seq, tau_ms, delta_t_ms, frame_shape = args
 
@@ -113,10 +115,11 @@ def process_sequence(args):
         else:
             labels = []
 
-        np.savez(output_file, event_frame=event_frame, labels=labels)
+        np.savez(output_file, event=event_frame, labels=labels)
 
     print(f"end sequence: {seq}")
 
+# メイン処理
 def main(config):
     input_dir = config["input_dir"]
     output_dir = config["output_dir"]
