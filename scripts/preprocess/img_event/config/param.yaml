@@ -1,0 +1,8 @@
+# config.yaml
+sequence_dir: "/Users/at/dataset/DSEC/interlaken_00_b"
+output_dir: "/Users/at/dataset/pre_dsec/interlaken_00_b"
+frame_shape: 
+  - 480
+  - 640
+downsample: false
+num_event_frames: 5
